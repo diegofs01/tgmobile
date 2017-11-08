@@ -1,0 +1,45 @@
+<!--
+  Generated template for the VeiculoConsultaPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Consultar Veículo</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+  <ion-item>
+    <ion-label stacked>Placa</ion-label>
+    <ion-input [(ngModel)]="placa" type="text" placeholder="AAA-0000" ></ion-input>
+  </ion-item>
+  <button (click)="consultarVeiculo()" ion-button full class="botao1">Consultar Veiculo</button>
+
+  <ion-list>
+    <p>Placa:  {{veiculo.placa}}</p>
+    <p>Marca:  {{veiculo.marca}}</p>
+    <p>Modelo: {{veiculo.modelo}}</p>
+    <p>Ano do Modelo: {{veiculo.anoModelo}}</p>
+    <p>Fabricado: {{veiculo.anoFabricacao}}</p>
+    <p>Cor: {{veiculo.cor}}</p>
+    <p>País de Fabricação: {{veiculo.paisFabricacao}}</p>
+    <p>RA Aluno: {{veiculo.raAluno}}</p>
+    <p>Nome Aluno: {{aluno.nome}}</p>
+    <p>CPF Aluno: {{aluno.cpf}}</p>
+    <p>RG Aluno: {{aluno.rg}}</p>
+    <p>Endereço Aluno: {{aluno.endereco}}</p>
+    <p>Numero Aluno: {{aluno.numero}}</p>
+    <p>Complemento Aluno: {{aluno.complemento}}</p>
+    <p>Bairro Aluno: {{aluno.bairro}}</p>
+    <p>Cidade Aluno: {{aluno.cidade}}</p>
+    <p>Estado Aluno: {{aluno.estado}}</p>
+    <p>CEP Aluno: {{aluno.cep}}</p>
+    <p>Telefone Aluno: {{aluno.numeroTelefone}}</p>
+    <p>Celular Aluno: {{aluno.numeroCelular}}</p>
+  </ion-list>
+  <button ion-button full (click)="voltar()">Voltar</button>
+</ion-content>

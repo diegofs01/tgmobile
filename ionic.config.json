@@ -1,5 +1,6 @@
 {
   "name": "tgmobile",
-  "app_id": "",
-  "type": "ionic-angular"
+  "app_id": "1dfa3530",
+  "type": "ionic-angular",
+  "integrations": {}
 }
