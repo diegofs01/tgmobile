@@ -11,6 +11,7 @@ import { HomePage } from '../pages/home/home';
 import { VeiculoServiceProvider } from '../providers/veiculo-service/veiculo-service';
 import { AlunoServiceProvider } from '../providers/aluno-service/aluno-service';
 import { OcorrenciaServiceProvider } from '../providers/ocorrencia-service/ocorrencia-service';
+import { TipoOcorrenciaServiceProvider } from '../providers/tipo-ocorrencia-service/tipo-ocorrencia-service';
 
 import { VeiculoConsultaPage } from '../pages/veiculo-consulta/veiculo-consulta';
 
@@ -51,7 +52,8 @@ import { OcorrenciaListaPage } from '../pages/ocorrencia-lista/ocorrencia-lista'
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     VeiculoServiceProvider,
     AlunoServiceProvider,
-    OcorrenciaServiceProvider
+    OcorrenciaServiceProvider,
+    TipoOcorrenciaServiceProvider
   ]
 })
 export class AppModule {}

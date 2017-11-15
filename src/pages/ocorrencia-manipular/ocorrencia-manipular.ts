@@ -1,3 +1,5 @@
+import { TipoOcorrenciaServiceProvider } from '../../providers/tipo-ocorrencia-service/tipo-ocorrencia-service';
+import { TipoOcorrencia } from '../../model/tipoOcorrencia';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
@@ -21,17 +23,33 @@ export class OcorrenciaManipularPage {
   public titulo: String;
   public editar: boolean;
   public ocorrencia: Ocorrencia;
+  public tiposOcorrencias: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public ocorrenciaService: OcorrenciaServiceProvider) {
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams, 
+    public ocorrenciaService: OcorrenciaServiceProvider,
+    public tipoOcorrenciaService: TipoOcorrenciaServiceProvider) {
+
     if(navParams.get('tipo') === 'editar') {
       this.ocorrencia = navParams.get('ocorrencia');
       this.titulo = 'Editar Ocorrencia';
       this.editar = true;
     } else {
-      this.ocorrencia = new Ocorrencia(navParams.get('placa'), null, null, '');
+      this.ocorrencia = new Ocorrencia(navParams.get('placa'), null, null, '', null);
       this.titulo = 'Nova Ocorrencia';
       this.editar = false;
     }
+
+    tipoOcorrenciaService.listar()
+    .then(data => {
+      this.tiposOcorrencias = data;
+
+      if(navParams.get('tipo') === 'editar') {
+        this.ocorrencia.tipoOcorrencia = this.tiposOcorrencias.find(to => to.id === this.ocorrencia.tipoOcorrencia.id);
+      }
+
+    });
   }
 
   salvarOcorrencia() {
@@ -56,4 +74,5 @@ export class OcorrenciaManipularPage {
   voltar() {
     this.navCtrl.pop();
   }
+
 }

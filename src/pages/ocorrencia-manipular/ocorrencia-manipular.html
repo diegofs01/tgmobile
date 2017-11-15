@@ -23,12 +23,20 @@
     <ion-datetime displayFormat="DD/MM/YYYY" pickerFormat="DD/MM/YYYY" [(ngModel)]="ocorrencia.data" [disabled]="editar"></ion-datetime>
   </ion-item>
   <ion-item>
-    <ion-label floating>Data da Ocorrencia</ion-label>
+    <ion-label floating>Hora da Ocorrencia</ion-label>
     <ion-datetime displayFormat="HH:mm:ss" pickerFormat="HH:mm:ss" [(ngModel)]="ocorrencia.hora" [disabled]="editar"></ion-datetime>
   </ion-item>
   <ion-item>
     <ion-label floating>Descrição da Ocorrencia</ion-label>
     <ion-input type="text" [(ngModel)]="ocorrencia.descricao"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label floating>Tipo da Ocorrencia</ion-label>
+    <ion-select [(ngModel)]="ocorrencia.tipoOcorrencia">
+      <ion-option *ngFor="let tipoOcorrencia of tiposOcorrencias" [value]="tipoOcorrencia">
+        {{tipoOcorrencia.nome}}
+      </ion-option>
+    </ion-select>
   </ion-item>
   <ion-item>
     <button ion-button full (click)="salvarOcorrencia()" [hidden]="!editar">Salvar Ocorrencia</button>

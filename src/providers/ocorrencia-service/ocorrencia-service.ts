@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 
-let apiUrl = 'http://192.168.15.12:8080/api/ocorrencia/';
+let apiUrl = 'http://localhost:8080/api/ocorrencia/';
 
 /*
   Generated class for the OcorrenciaServiceProvider provider.
