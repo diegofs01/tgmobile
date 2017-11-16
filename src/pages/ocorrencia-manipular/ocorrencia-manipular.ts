@@ -22,6 +22,7 @@ export class OcorrenciaManipularPage {
 
   public titulo: String;
   public editar: boolean;
+  public semPlaca: boolean;
   public ocorrencia: Ocorrencia;
   public tiposOcorrencias: any;
   public tipoOcorrenciaID: Number;
@@ -36,11 +37,19 @@ export class OcorrenciaManipularPage {
       this.ocorrencia = navParams.get('ocorrencia');
       this.titulo = 'Editar Ocorrencia';
       this.editar = true;
+      this.semPlaca = false;
       this.tipoOcorrenciaID = this.ocorrencia.tipoOcorrencia.id;
-    } else {
+    } else if(navParams.get('tipo') === 'novo') {
       this.ocorrencia = new Ocorrencia(navParams.get('placa'), null, null, '', null);
       this.titulo = 'Nova Ocorrencia';
       this.editar = false;
+      this.semPlaca = false;
+      this.tipoOcorrenciaID = 0;
+    } else if(navParams.get('tipo') === 'novoSemPlaca') {
+      this.ocorrencia = new Ocorrencia('', null, null, '', null);
+      this.titulo = 'Nova Ocorrencia (Sem Placa)';
+      this.editar = false;
+      this.semPlaca = true;
       this.tipoOcorrenciaID = 0;
     }
 

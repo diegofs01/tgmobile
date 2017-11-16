@@ -1,3 +1,4 @@
+import { OcorrenciaManipularPage } from '../ocorrencia-manipular/ocorrencia-manipular';
 import { Component } from '@angular/core';
 import { IonicPage, NavController } from 'ionic-angular';
 
@@ -22,7 +23,8 @@ export class OcorrenciaPage {
   public placaBusca: String;
 
   public pages = [
-    { component: OcorrenciaListaPage }
+    { component: OcorrenciaListaPage },
+    { component: OcorrenciaManipularPage }
   ];
 
 
@@ -52,6 +54,12 @@ export class OcorrenciaPage {
   resetarFiltro() {
     this.listarVeiculos();
     this.placaBusca = '';
+  }
+
+  novaOcorrencia() {
+    this.navCtrl.push(this.pages[1].component, {
+      'tipo': 'novoSemPlaca',
+    });
   }
 
   voltar() {
