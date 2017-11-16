@@ -24,6 +24,7 @@ export class OcorrenciaManipularPage {
   public editar: boolean;
   public ocorrencia: Ocorrencia;
   public tiposOcorrencias: any;
+  public tipoOcorrenciaID: Number;
 
   constructor(
     public navCtrl: NavController, 
@@ -35,24 +36,22 @@ export class OcorrenciaManipularPage {
       this.ocorrencia = navParams.get('ocorrencia');
       this.titulo = 'Editar Ocorrencia';
       this.editar = true;
+      this.tipoOcorrenciaID = this.ocorrencia.tipoOcorrencia.id;
     } else {
       this.ocorrencia = new Ocorrencia(navParams.get('placa'), null, null, '', null);
       this.titulo = 'Nova Ocorrencia';
       this.editar = false;
+      this.tipoOcorrenciaID = 0;
     }
 
     tipoOcorrenciaService.listar()
     .then(data => {
       this.tiposOcorrencias = data;
-
-      if(navParams.get('tipo') === 'editar') {
-        this.ocorrencia.tipoOcorrencia = this.tiposOcorrencias.find(to => to.id === this.ocorrencia.tipoOcorrencia.id);
-      }
-
     });
   }
 
   salvarOcorrencia() {
+    this.ocorrencia.tipoOcorrencia = this.tiposOcorrencias.find(to => to.id === this.tipoOcorrenciaID);
     this.ocorrenciaService.salvarOcorrencia(this.ocorrencia)
     .then(() => {
       this.voltar();
@@ -60,6 +59,7 @@ export class OcorrenciaManipularPage {
   }
 
   adicionarOcorrencia() {
+    this.ocorrencia.tipoOcorrencia = this.tiposOcorrencias.find(to => to.id === this.tipoOcorrenciaID);
     this.ocorrenciaService.adicionarOcorrencia(this.ocorrencia)
     .then(() => {
       this.voltar();

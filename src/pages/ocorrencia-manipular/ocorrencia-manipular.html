@@ -32,8 +32,8 @@
   </ion-item>
   <ion-item>
     <ion-label floating>Tipo da Ocorrencia</ion-label>
-    <ion-select [(ngModel)]="ocorrencia.tipoOcorrencia">
-      <ion-option *ngFor="let tipoOcorrencia of tiposOcorrencias" [value]="tipoOcorrencia">
+    <ion-select [(ngModel)]="tipoOcorrenciaID">
+      <ion-option *ngFor="let tipoOcorrencia of tiposOcorrencias" [value]="tipoOcorrencia.id">
         {{tipoOcorrencia.nome}}
       </ion-option>
     </ion-select>
