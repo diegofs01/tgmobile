@@ -12,6 +12,7 @@ import { VeiculoServiceProvider } from '../providers/veiculo-service/veiculo-ser
 import { AlunoServiceProvider } from '../providers/aluno-service/aluno-service';
 import { OcorrenciaServiceProvider } from '../providers/ocorrencia-service/ocorrencia-service';
 import { TipoOcorrenciaServiceProvider } from '../providers/tipo-ocorrencia-service/tipo-ocorrencia-service';
+import { CursoServiceProvider } from '../providers/curso-service/curso-service';
 
 import { VeiculoConsultaPage } from '../pages/veiculo-consulta/veiculo-consulta';
 
@@ -53,7 +54,8 @@ import { OcorrenciaListaPage } from '../pages/ocorrencia-lista/ocorrencia-lista'
     VeiculoServiceProvider,
     AlunoServiceProvider,
     OcorrenciaServiceProvider,
-    TipoOcorrenciaServiceProvider
+    TipoOcorrenciaServiceProvider,
+    CursoServiceProvider
   ]
 })
 export class AppModule {}
