@@ -3,6 +3,7 @@ import { NavController } from 'ionic-angular';
 
 import { OcorrenciaPage } from '../ocorrencia/ocorrencia';
 import { VeiculoConsultaPage } from '../veiculo-consulta/veiculo-consulta';
+import { ConsultaOcorrenciaPage } from '../consulta-ocorrencia/consulta-ocorrencia';
 
 @Component({
   selector: 'page-home',
@@ -13,6 +14,7 @@ export class HomePage {
   public pages = [
     { component: VeiculoConsultaPage },
     { component: OcorrenciaPage },
+    { component: ConsultaOcorrenciaPage }
   ];
 
   constructor(public navCtrl: NavController) {
@@ -25,6 +27,10 @@ export class HomePage {
 
   ocorrencias() {
     this.navCtrl.push(this.pages[1].component);
+  }
+
+  consultaOcorrencia() {
+    this.navCtrl.push(this.pages[2].component);
   }
 
 }

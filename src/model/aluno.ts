@@ -12,6 +12,7 @@ export class Aluno {
         private estado: String,
         private cep: String,
         private numeroTelefone: String,
-        private numeroCelular: String
+        private numeroCelular: String,
+        private idCurso: Number
     ){}
 }

@@ -22,6 +22,10 @@ export class OcorrenciaListaPage {
   public ocorrencias: any;
   public placa: String;
 
+  public periodoInicio: Date;
+  public periodoFinal: Date;
+  public filtrar: boolean;
+
   public pages = [
     { component: OcorrenciaManipularPage }
   ];
@@ -56,4 +60,22 @@ export class OcorrenciaListaPage {
     this.navCtrl.pop();
   }
 
+  filtrarOcorrenciasByPeriodo() {
+    if(this.periodoInicio <= this.periodoFinal) {
+      let tempList = [];
+
+      this.ocorrencias.forEach(oco => {
+        if(oco.data >= this.periodoInicio && oco.data <= this.periodoFinal) {
+          tempList.push(oco);
+        }
+      });
+      this.ocorrencias = tempList;
+    }
+  }
+
+  resetarFiltro() {
+    if(!this.filtrar) {
+      this.listarByPlaca(this.placa);
+    }
+  }
 }

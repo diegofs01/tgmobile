@@ -35,7 +35,7 @@ export class VeiculoConsultaPage {
     public cursoService: CursoServiceProvider) {
 
       this.veiculo = new Veiculo('','','', 0, 0,'','','');
-      this.aluno = new Aluno('','','','','',0,'','','','','','','');
+      this.aluno = new Aluno('','','','','',0,'','','','','','','', 0);
       this.curso = new Curso(0,'');
   }
 

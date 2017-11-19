@@ -20,6 +20,8 @@ import { OcorrenciaPage } from '../pages/ocorrencia/ocorrencia';
 import { OcorrenciaManipularPage } from '../pages/ocorrencia-manipular/ocorrencia-manipular';
 import { OcorrenciaListaPage } from '../pages/ocorrencia-lista/ocorrencia-lista';
 
+import { ConsultaOcorrenciaPage } from '../pages/consulta-ocorrencia/consulta-ocorrencia';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -29,7 +31,9 @@ import { OcorrenciaListaPage } from '../pages/ocorrencia-lista/ocorrencia-lista'
 
     OcorrenciaPage,
     OcorrenciaListaPage,
-    OcorrenciaManipularPage
+    OcorrenciaManipularPage,
+
+    ConsultaOcorrenciaPage
   ],
   imports: [
     BrowserModule,
@@ -45,7 +49,9 @@ import { OcorrenciaListaPage } from '../pages/ocorrencia-lista/ocorrencia-lista'
 
     OcorrenciaPage,
     OcorrenciaListaPage,
-    OcorrenciaManipularPage
+    OcorrenciaManipularPage,
+
+    ConsultaOcorrenciaPage
   ],
   providers: [
     StatusBar,
