@@ -3,8 +3,7 @@ import { Veiculo } from '../../model/veiculo';
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
-
-let apiUrl = 'http://localhost:8080/api/veiculo/';
+import { apiUrl } from '../apiUrl';
 
 /*
   Generated class for the VeiculoServiceProvider provider.
@@ -22,7 +21,7 @@ export class VeiculoServiceProvider {
 
   buscar(placa: String) {
     return new Promise(resolve => {
-      this.http.get(apiUrl + placa)
+      this.http.get(apiUrl.urlVeiculo + placa)
       .map(res => res.json())
       .subscribe(data => {
         this.veiculo = data;
@@ -33,7 +32,7 @@ export class VeiculoServiceProvider {
 
   listar() {
     return new Promise(resolve => {
-      this.http.get(apiUrl)
+      this.http.get(apiUrl.urlVeiculo)
       .map(res => res.json())
       .subscribe(data => {
         this.veiculos = data;

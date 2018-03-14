@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
-
-let apiUrl = 'http://localhost:8080/api/tipoOcorrencia/';
+import { apiUrl } from '../apiUrl';
 
 /*
   Generated class for the TipoOcorrenciaServiceProvider provider.
@@ -20,7 +19,7 @@ export class TipoOcorrenciaServiceProvider {
 
   listar() {
     return new Promise(resolve => {
-      this.http.get(apiUrl)
+      this.http.get(apiUrl.urlTipoOcorrencia)
       .map(res => res.json())
       .subscribe(data => {
         this.tiposOcorrencias = data;

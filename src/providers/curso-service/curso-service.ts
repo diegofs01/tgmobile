@@ -2,8 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { Curso } from '../../model/curso';
-
-let apiUrl = 'http://localhost:8080/api/curso/';
+import { apiUrl } from '../apiUrl';
 
 /*
   Generated class for the CursoServiceProvider provider.
@@ -20,7 +19,7 @@ export class CursoServiceProvider {
 
   buscar(id: number) {
     return new Promise(resolve => {
-      this.http.get(apiUrl + id)
+      this.http.get(apiUrl.urlCurso + id)
         .map(res => res.json())
         .subscribe(curso => {
           this.curso = curso;

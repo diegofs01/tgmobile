@@ -2,8 +2,7 @@ import { Aluno } from '../../model/aluno';
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
-
-let apiUrl = 'http://localhost:8080/api/aluno/';
+import { apiUrl } from '../apiUrl';
 
 /*
   Generated class for the AlunoServiceProvider provider.
@@ -20,7 +19,7 @@ export class AlunoServiceProvider {
 
   buscar(ra: String) {
     return new Promise(resolve => {
-      this.http.get(apiUrl + ra)
+      this.http.get(apiUrl.urlAluno + ra)
         .map(res => res.json())
         .subscribe(aluno => {
           this.aluno = aluno;

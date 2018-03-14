@@ -2,8 +2,7 @@ import { Ocorrencia } from '../../model/ocorrencia';
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
-
-let apiUrl = 'http://localhost:8080/api/ocorrencia/';
+import { apiUrl } from '../apiUrl';
 
 /*
   Generated class for the OcorrenciaServiceProvider provider.
@@ -21,7 +20,7 @@ export class OcorrenciaServiceProvider {
 
   listar() {
     return new Promise(resolve => {
-      this.http.get(apiUrl)
+      this.http.get(apiUrl.urlOcorrencia)
       .map(res => res.json())
       .subscribe(data => {
         this.ocorrencias = data;
@@ -32,7 +31,7 @@ export class OcorrenciaServiceProvider {
 
   listarByPlaca(placa: String) {
     return new Promise(resolve => {
-      this.http.get(apiUrl + placa)
+      this.http.get(apiUrl.urlOcorrencia + placa)
       .map(res => res.json())
       .subscribe(data => {
         this.ocorrencias = data;
@@ -44,11 +43,15 @@ export class OcorrenciaServiceProvider {
   salvarOcorrencia(ocorrencia: Ocorrencia) {
     return new Promise(resolve => {
 
+      //console.log("ocorrencia.data: " + ocorrencia.data);
       let tempData = new Date(ocorrencia.data);
+      //console.log("tempData: " + tempData);
       tempData.setHours(tempData.getHours() + 12);
+      //console.log("tempData2: " + tempData);
+      //console.log("tempData.toLocaleString(): " + tempData.toISOString());
       ocorrencia.data = tempData;
-      
-      this.http.put(apiUrl + ocorrencia.placaVeiculo, ocorrencia)
+
+      this.http.put(apiUrl.urlOcorrencia + ocorrencia.placaVeiculo, ocorrencia)
       .subscribe((result: any) => {
         resolve(result.json());
       });
@@ -62,7 +65,7 @@ export class OcorrenciaServiceProvider {
       tempData.setHours(tempData.getHours() + 12);
       ocorrencia.data = tempData;
 
-      this.http.post(apiUrl, ocorrencia)
+      this.http.post(apiUrl.urlOcorrencia, ocorrencia)
       .subscribe((result:any) => {
         resolve(result.json());
       });
@@ -71,8 +74,8 @@ export class OcorrenciaServiceProvider {
 
   deletarOcorrencia(ocorrencia: Ocorrencia) {
     return new Promise(resolve => {
-      console.log(apiUrl + ocorrencia.placaVeiculo + '?data=' + ocorrencia.data + '&hora=' + ocorrencia.hora);
-      this.http.delete(apiUrl + ocorrencia.placaVeiculo + '?data=' + ocorrencia.data + '&hora=' + ocorrencia.hora)
+      console.log(apiUrl.urlOcorrencia + ocorrencia.placaVeiculo + '?data=' + ocorrencia.data + '&hora=' + ocorrencia.hora);
+      this.http.delete(apiUrl.urlOcorrencia + ocorrencia.placaVeiculo + '?data=' + ocorrencia.data + '&hora=' + ocorrencia.hora)
       .subscribe((ok) => {
         console.log(ok);
       });
