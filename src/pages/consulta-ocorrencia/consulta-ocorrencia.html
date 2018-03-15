@@ -33,7 +33,7 @@
     </ion-item>
     <button (click)="filtrarOcorrenciasByPeriodo()" ion-button full>Consultar Período</button>
 
-    <ion-card>
+    <!-- <ion-card>
         <ion-card-content ion-item *ngFor="let ocorrencia of ocorrencias">
           <button ion-item (click)="manipularOcorrencia(ocorrencia)">
             <p>Veículo: {{ ocorrencia.placaVeiculo }}</p>
@@ -44,7 +44,7 @@
             <p>{{ocorrencia.descricao}}</p>
           </button>
         </ion-card-content>
-      </ion-card>
+      </ion-card> -->
   </div>
 
   <div *ngIf="tipoConsulta === 'tipo'">
@@ -58,7 +58,7 @@
       </ion-select>
     </ion-item>
 
-    <ion-card *ngIf="filtradoTipo">
+    <!-- <ion-card *ngIf="filtradoTipo">
       <ion-card-content ion-item *ngFor="let ocorrencia of ocorrencias">
         <button ion-item (click)="manipularOcorrencia(ocorrencia)">
           <p>Data: {{ ocorrencia.data | date: 'dd/MM/yyyy' }}</p>
@@ -68,7 +68,7 @@
           <p>{{ocorrencia.descricao}}</p>
         </button>
       </ion-card-content>
-    </ion-card>
+    </ion-card> -->
   </div>
 
   <div *ngIf="tipoConsulta === 'veiculo'">
@@ -79,7 +79,7 @@
     </ion-item>
     <button (click)="consultarVeiculo()" ion-button full>Consultar</button>
 
-    <ion-card>
+    <!-- <ion-card>
       <ion-card-header>
         Veículo: {{placa}}
       </ion-card-header>
@@ -92,7 +92,7 @@
           <p>{{ocorrencia.descricao}}</p>
         </button>
       </ion-card-content>
-    </ion-card>
+    </ion-card> -->
   </div>
 
   <div *ngIf="tipoConsulta === 'aluno'">
@@ -102,18 +102,19 @@
       <ion-input [(ngModel)]="ra" type="text" (ionChange)="ocorrencias = [];"></ion-input>
     </ion-item>
     <button (click)="filtrarOcorrenciasByRA()" ion-button full>Consultar Aluno</button>
-
-    <ion-card>
-      <ion-card-content ion-item *ngFor="let ocorrencia of ocorrencias">
-        <button ion-item (click)="manipularOcorrencia(ocorrencia)">
-          <p>Veículo: {{ ocorrencia.placaVeiculo }}</p>
-          <p>Data: {{ ocorrencia.data | date: 'dd/MM/yyyy' }}</p>
-          <p>Hora: {{ ocorrencia.hora }}</p>
-          <p>Tipo: {{ocorrencia.tipoOcorrencia.id}} {{ocorrencia.tipoOcorrencia.nome}}</p>
-          <p>Descrição: </p>
-          <p>{{ocorrencia.descricao}}</p>
-        </button>
-      </ion-card-content>
-    </ion-card>
   </div>
+
+  <ion-card>
+    <ion-card-content ion-item *ngFor="let ocorrencia of ocorrencias">
+      <button ion-item (click)="manipularOcorrencia(ocorrencia)">
+        <p>Veículo: {{ ocorrencia.placaVeiculo }}</p>
+        <p>Data: {{ ocorrencia.data | date: 'dd/MM/yyyy' }}</p>
+        <p>Hora: {{ ocorrencia.hora }}</p>
+        <p>Tipo: {{ocorrencia.tipoOcorrencia.id}} {{ocorrencia.tipoOcorrencia.nome}}</p>
+        <p>Detalhamento: </p>
+        <p>{{ocorrencia.descricao}}</p>
+      </button>
+    </ion-card-content>
+  </ion-card>
+
 </ion-content>
