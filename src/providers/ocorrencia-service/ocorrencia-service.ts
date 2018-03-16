@@ -31,7 +31,7 @@ export class OcorrenciaServiceProvider {
 
   listarByPlaca(placa: String) {
     return new Promise(resolve => {
-      this.http.get(apiUrl.urlOcorrencia + placa)
+      this.http.get(apiUrl.urlOcorrencia + '/placa/' + placa)
       .map(res => res.json())
       .subscribe(data => {
         this.ocorrencias = data;
@@ -51,7 +51,7 @@ export class OcorrenciaServiceProvider {
       //console.log("tempData.toLocaleString(): " + tempData.toISOString());
       ocorrencia.data = tempData;
 
-      this.http.put(apiUrl.urlOcorrencia + ocorrencia.placaVeiculo, ocorrencia)
+      this.http.put(apiUrl.urlOcorrencia + ocorrencia.numero, ocorrencia)
       .subscribe((result: any) => {
         resolve(result.json());
       });
@@ -72,10 +72,9 @@ export class OcorrenciaServiceProvider {
     });
   }
 
-  deletarOcorrencia(ocorrencia: Ocorrencia) {
+  deletarOcorrencia(numero: Number) {
     return new Promise(resolve => {
-      console.log(apiUrl.urlOcorrencia + ocorrencia.placaVeiculo + '?data=' + ocorrencia.data + '&hora=' + ocorrencia.hora);
-      this.http.delete(apiUrl.urlOcorrencia + ocorrencia.placaVeiculo + '?data=' + ocorrencia.data + '&hora=' + ocorrencia.hora)
+      this.http.delete(apiUrl.urlOcorrencia + numero)
       .subscribe((ok) => {
         console.log(ok);
       });

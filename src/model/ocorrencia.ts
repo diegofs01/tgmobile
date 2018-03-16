@@ -3,6 +3,7 @@ import { TipoOcorrencia } from './tipoOcorrencia';
 export class Ocorrencia {
 
     constructor (
+        public numero: Number,
         public placaVeiculo: String,
         public data: Date,
         public hora: Date,
