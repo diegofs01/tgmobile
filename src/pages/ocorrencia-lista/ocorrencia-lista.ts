@@ -21,6 +21,7 @@ export class OcorrenciaListaPage {
 
   public ocorrencias: any;
   public placa: String;
+  public qtdOcorrencia: Number;
 
   public periodoInicio: Date;
   public periodoFinal: Date;
@@ -39,6 +40,7 @@ export class OcorrenciaListaPage {
     this.ocorrenciaService.listarByPlaca(placa)
     .then(data => {
       this.ocorrencias = data;
+      this.qtdOcorrencia = this.ocorrencias.length;
     });
   }
 

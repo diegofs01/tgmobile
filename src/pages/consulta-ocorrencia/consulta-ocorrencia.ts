@@ -33,6 +33,7 @@ export class ConsultaOcorrenciaPage {
   ];
 
   public tipoConsulta: String;
+  public qtdOcorrencia: Number;
 
   public placa: String;
   public idTipo: Number;
@@ -87,6 +88,7 @@ export class ConsultaOcorrenciaPage {
     if(this.placa !== undefined && this.placa !== '') {
       this.ocorrenciaService.listarByPlaca(this.placa).then(data => {
         this.ocorrencias = data;
+        this.qtdOcorrencia = this.ocorrencias.length;
       });
     }
   }
@@ -104,10 +106,12 @@ export class ConsultaOcorrenciaPage {
           this.filtradoTipo = true;
         });
         this.ocorrencias = tempList;
+        this.qtdOcorrencia = this.ocorrencias.length;
       });
     } else {
       this.filtradoTipo = false;
       this.ocorrencias = [];
+      this.qtdOcorrencia = 0;
     }
   }
 
@@ -126,6 +130,7 @@ export class ConsultaOcorrenciaPage {
         tempVeiculos.forEach(vei => {
           this.ocorrenciaService.listarByPlaca(vei.placa).then(data => {
             this.ocorrencias = this.ocorrencias.concat(data);
+            this.qtdOcorrencia = this.ocorrencias.length;
           });
         });
       });
@@ -142,6 +147,7 @@ export class ConsultaOcorrenciaPage {
         tempList.forEach(oco => {
           if(oco.data >= this.periodoInicio && oco.data <= this.periodoFinal) {
             this.ocorrencias.push(oco);
+            this.qtdOcorrencia = this.ocorrencias.length;
           }
         });
       });

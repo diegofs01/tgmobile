@@ -65,6 +65,7 @@
   </div>
 
   <ion-card>
+    <p>Quantidade de Ocorrencias: {{ qtdOcorrencia }}</p>
     <ion-card-content ion-item *ngFor="let ocorrencia of ocorrencias">
       <button ion-item (click)="manipularOcorrencia(ocorrencia)">
         <p>Número: {{ ocorrencia.numero }}</p>
