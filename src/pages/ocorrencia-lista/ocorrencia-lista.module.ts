@@ -4,7 +4,7 @@ import { OcorrenciaListaPage } from './ocorrencia-lista';
 
 @NgModule({
   declarations: [
-    OcorrenciaListaPage,
+    //OcorrenciaListaPage,
   ],
   imports: [
     IonicPageModule.forChild(OcorrenciaListaPage),

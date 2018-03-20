@@ -4,7 +4,7 @@ import { ConsultaOcorrenciaPage } from './consulta-ocorrencia';
 
 @NgModule({
   declarations: [
-    ConsultaOcorrenciaPage,
+    //ConsultaOcorrenciaPage,
   ],
   imports: [
     IonicPageModule.forChild(ConsultaOcorrenciaPage),
