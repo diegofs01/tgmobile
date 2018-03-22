@@ -4,6 +4,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Ocorrencia } from '../../model/ocorrencia';
 import { OcorrenciaManipularPage } from '../ocorrencia-manipular/ocorrencia-manipular';
 import { OcorrenciaServiceProvider } from '../../providers/ocorrencia-service/ocorrencia-service';
+import { TipoOcorrenciaServiceProvider } from '../../providers/tipo-ocorrencia-service/tipo-ocorrencia-service';
 
 /**
  * Generated class for the OcorrenciaListaPage page.
@@ -20,7 +21,10 @@ import { OcorrenciaServiceProvider } from '../../providers/ocorrencia-service/oc
 export class OcorrenciaListaPage {
 
   public ocorrencias: any;
-  public placa: String;
+  public tipoOcorrencaias: any;
+
+  public idTipoOcorrencia: Number;
+
   public qtdOcorrencia: Number;
 
   public periodoInicio: Date;
@@ -31,13 +35,26 @@ export class OcorrenciaListaPage {
     { component: OcorrenciaManipularPage }
   ];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public ocorrenciaService: OcorrenciaServiceProvider) {
-    this.placa = navParams.get('param1');
-    this.listarByPlaca(this.placa);
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams, 
+    public ocorrenciaService: OcorrenciaServiceProvider,
+    public tipoOcorrenciaService: TipoOcorrenciaServiceProvider) {    
+
+    this.listar();
+
+    this.tipoOcorrenciaService.listar()
+    .then(data => {
+      this.tipoOcorrencaias = data;
+    });
+
+    this.periodoInicio = null;
+    this.periodoFinal = null;
+    this.idTipoOcorrencia = null;
   }
 
-  listarByPlaca(placa: String) {
-    this.ocorrenciaService.listarByPlaca(placa)
+  listar() {
+    this.ocorrenciaService.listar()
     .then(data => {
       this.ocorrencias = data;
       this.qtdOcorrencia = this.ocorrencias.length;
@@ -54,7 +71,6 @@ export class OcorrenciaListaPage {
   novaOcorrencia() {
     this.navCtrl.push(this.pages[0].component, {
       'tipo': 'novo',
-      'placa': this.placa
     });
   }
 
@@ -62,7 +78,28 @@ export class OcorrenciaListaPage {
     this.navCtrl.pop();
   }
 
-  filtrarOcorrenciasByPeriodo() {
+  filtrarOcorrencias() {
+    if(this.idTipoOcorrencia !== null && this.periodoInicio === null && this.periodoFinal === null) {
+      this.filtroPorTipoOcorrencia();
+    }
+
+    if(this.idTipoOcorrencia === null && this.periodoInicio !== null && this.periodoFinal !== null) {
+      this.filtroPorPeriodo();
+    }
+
+    if(this.idTipoOcorrencia !== null && this.periodoInicio !== null && this.periodoFinal !== null) {
+      this.filtroPorPeriodoETipo();
+    }
+  }
+
+  resetarFiltro() {
+    this.listar();
+    this.idTipoOcorrencia = null;
+    this.periodoInicio = null;
+    this.periodoFinal = null;
+  }
+
+  filtroPorPeriodo() {
     if(this.periodoInicio <= this.periodoFinal) {
       let tempList = [];
 
@@ -72,12 +109,33 @@ export class OcorrenciaListaPage {
         }
       });
       this.ocorrencias = tempList;
-    }
+      this.qtdOcorrencia = this.ocorrencias.length;
+    } 
   }
 
-  resetarFiltro() {
-    if(!this.filtrar) {
-      this.listarByPlaca(this.placa);
+  filtroPorTipoOcorrencia() {
+    let tempList = [];
+
+    this.ocorrencias.forEach(oco => {
+      if(oco.tipoOcorrencia.id === this.idTipoOcorrencia) {
+        tempList.push(oco);
+      }
+    });
+    this.ocorrencias = tempList;
+    this.qtdOcorrencia = this.ocorrencias.length;
+  }
+
+  filtroPorPeriodoETipo() {
+    if(this.periodoInicio <= this.periodoFinal) {
+      let tempList = [];
+
+      this.ocorrencias.forEach(oco => {
+        if(oco.data >= this.periodoInicio && oco.data <= this.periodoFinal && oco.tipoOcorrencia.id === this.idTipoOcorrencia) {
+          tempList.push(oco);
+        }
+      });
+      this.ocorrencias = tempList;
+      this.qtdOcorrencia = this.ocorrencias.length;
     }
   }
 }

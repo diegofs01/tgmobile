@@ -16,10 +16,14 @@
 <ion-content padding>
   <p>Lista de Ocorrencias do Veículo {{ placa }}</p>
   <p>Quantidade de Ocorrencias: {{ qtdOcorrencia }}</p>
+
+  <ion-item>
+    <button ion-button full (click)="novaOcorrencia()">Nova Ocorrencia</button>
+  </ion-item>
   
   <div>
     <ion-item>
-      <ion-label>Filtrar por Período</ion-label>
+      <ion-label>Filtrar</ion-label>
       <ion-checkbox [(ngModel)]="filtrar" color="dark" checked="false" (ionChange)="resetarFiltro()"></ion-checkbox>
     </ion-item>
   </div>
@@ -33,20 +37,29 @@
       <ion-label floating>Período Final</ion-label>
       <ion-datetime displayFormat="DD/MM/YYYY" pickerFormat="DD/MM/YYYY" [(ngModel)]="periodoFinal"></ion-datetime>
     </ion-item>
-    <button (click)="filtrarOcorrenciasByPeriodo()" ion-button full>Filtrar</button>
+    <ion-item>
+        <ion-label floating>Tipo da Ocorrencia</ion-label>
+        <ion-select [(ngModel)]="idTipoOcorrencia">
+          <ion-option *ngFor="let tipoOcorrencia of tipoOcorrencaias" [value]="tipoOcorrencia.id">
+            {{tipoOcorrencia.nome}}
+          </ion-option>
+        </ion-select>
+      </ion-item>
+    <button (click)="filtrarOcorrencias()" ion-button full>Filtrar</button>
+    <button (click)="resetarFiltro()" ion-button full>Resetar</button>
   </div>
 
   <ion-list>
     <button ion-item *ngFor="let ocorrencia of ocorrencias" (click)="manipularOcorrencia(ocorrencia)">
-      <p>Data: {{ ocorrencia.data | date: 'dd/MM/yyyy' }}</p>
-      <p>Hora: {{ ocorrencia.hora }}</p>
-      <p>Tipo: {{ocorrencia.tipoOcorrencia.id}} {{ocorrencia.tipoOcorrencia.nome}}</p>
+      <p>Placa: {{ ocorrencia.placaVeiculo }}</p>
+      <p>Data:  {{ ocorrencia.data | date: 'dd/MM/yyyy' }}</p>
+      <p>Hora:  {{ ocorrencia.hora }}</p>
+      <p>Tipo:  {{ocorrencia.tipoOcorrencia.id}} {{ocorrencia.tipoOcorrencia.nome}}</p>
       <p>Detalhamento: </p>
       <p>{{ocorrencia.descricao}}</p>
     </button>
   </ion-list>
   <ion-item>
-      <button ion-button full (click)="novaOcorrencia()">Nova Ocorrencia</button>
       <button ion-button full (click)="voltar()">Voltar</button>
   </ion-item>
 </ion-content>

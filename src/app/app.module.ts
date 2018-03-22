@@ -18,7 +18,6 @@ import { CursoServiceProvider } from '../providers/curso-service/curso-service';
 
 import { VeiculoConsultaPage } from '../pages/veiculo-consulta/veiculo-consulta';
 
-import { OcorrenciaPage } from '../pages/ocorrencia/ocorrencia';
 import { OcorrenciaManipularPage } from '../pages/ocorrencia-manipular/ocorrencia-manipular';
 import { OcorrenciaListaPage } from '../pages/ocorrencia-lista/ocorrencia-lista';
 
@@ -33,7 +32,6 @@ import { ConsultaOcorrenciaPage } from '../pages/consulta-ocorrencia/consulta-oc
 
     VeiculoConsultaPage,
 
-    OcorrenciaPage,
     OcorrenciaListaPage,
     OcorrenciaManipularPage,
 
@@ -51,7 +49,6 @@ import { ConsultaOcorrenciaPage } from '../pages/consulta-ocorrencia/consulta-oc
     
     VeiculoConsultaPage,
 
-    OcorrenciaPage,
     OcorrenciaListaPage,
     OcorrenciaManipularPage,
 

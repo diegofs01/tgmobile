@@ -41,16 +41,10 @@ export class OcorrenciaManipularPage {
       this.semPlaca = false;
       this.tipoOcorrenciaID = this.ocorrencia.tipoOcorrencia.id;
     } else if(navParams.get('tipo') === 'novo') {
-      this.ocorrencia = new Ocorrencia(0, navParams.get('placa'), null, null, '', null, false);
+      this.ocorrencia = new Ocorrencia(0, '', null, null, '', null, false);
       this.titulo = 'Nova Ocorrencia';
       this.editar = false;
       this.semPlaca = false;
-      this.tipoOcorrenciaID = 0;
-    } else if(navParams.get('tipo') === 'novoSemPlaca') {
-      this.ocorrencia = new Ocorrencia(0, '', null, null, '', null, false);
-      this.titulo = 'Nova Ocorrencia (Sem Placa)';
-      this.editar = false;
-      this.semPlaca = true;
       this.tipoOcorrenciaID = 0;
     }
 

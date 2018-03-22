@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
-import { OcorrenciaPage } from '../ocorrencia/ocorrencia';
+import { OcorrenciaListaPage } from '../ocorrencia-lista/ocorrencia-lista';
 import { VeiculoConsultaPage } from '../veiculo-consulta/veiculo-consulta';
 import { ConsultaOcorrenciaPage } from '../consulta-ocorrencia/consulta-ocorrencia';
 
@@ -13,7 +13,7 @@ export class HomePage {
 
   public pages = [
     { component: VeiculoConsultaPage },
-    { component: OcorrenciaPage },
+    { component: OcorrenciaListaPage },
     { component: ConsultaOcorrenciaPage }
   ];
 
