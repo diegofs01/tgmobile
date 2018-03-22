@@ -1,6 +1,6 @@
 import { TipoOcorrenciaServiceProvider } from '../../providers/tipo-ocorrencia-service/tipo-ocorrencia-service';
 import { TipoOcorrencia } from '../../model/tipoOcorrencia';
-import { Component } from '@angular/core';
+import { Component, TestabilityRegistry } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { OcorrenciaServiceProvider } from '../../providers/ocorrencia-service/ocorrencia-service';
@@ -16,7 +16,7 @@ import { Ocorrencia } from '../../model/ocorrencia';
 @IonicPage()
 @Component({
   selector: 'page-ocorrencia-manipular',
-  templateUrl: 'ocorrencia-manipular.html',
+  templateUrl: 'ocorrencia-manipular.html'
 })
 export class OcorrenciaManipularPage {
 
@@ -26,6 +26,7 @@ export class OcorrenciaManipularPage {
   public ocorrencia: Ocorrencia;
   public tiposOcorrencias: any;
   public tipoOcorrenciaID: Number;
+  public veiculoCadastrado: String;
 
   constructor(
     public navCtrl: NavController, 
@@ -40,17 +41,23 @@ export class OcorrenciaManipularPage {
       this.semPlaca = false;
       this.tipoOcorrenciaID = this.ocorrencia.tipoOcorrencia.id;
     } else if(navParams.get('tipo') === 'novo') {
-      this.ocorrencia = new Ocorrencia(0, navParams.get('placa'), null, null, '', null);
+      this.ocorrencia = new Ocorrencia(0, navParams.get('placa'), null, null, '', null, false);
       this.titulo = 'Nova Ocorrencia';
       this.editar = false;
       this.semPlaca = false;
       this.tipoOcorrenciaID = 0;
     } else if(navParams.get('tipo') === 'novoSemPlaca') {
-      this.ocorrencia = new Ocorrencia(0, '', null, null, '', null);
+      this.ocorrencia = new Ocorrencia(0, '', null, null, '', null, false);
       this.titulo = 'Nova Ocorrencia (Sem Placa)';
       this.editar = false;
       this.semPlaca = true;
       this.tipoOcorrenciaID = 0;
+    }
+
+    if(this.ocorrencia.veiculoCadastrado) {
+      this.veiculoCadastrado = 'Sim';
+    } else {
+      this.veiculoCadastrado = 'Não';
     }
 
     tipoOcorrenciaService.listar()

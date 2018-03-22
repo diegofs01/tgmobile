@@ -20,7 +20,7 @@
   </ion-item>
   <ion-item>
     <ion-label floating>Placa do Veículo</ion-label>
-    <ion-input type="text" [(ngModel)]="ocorrencia.placaVeiculo" [disabled]="!semPlaca"></ion-input>
+    <ion-input type="text" mask="AAA-9999" [(ngModel)]="ocorrencia.placaVeiculo" [disabled]="!semPlaca"></ion-input>
   </ion-item>
   <ion-item>
     <ion-label floating>Data da Ocorrencia</ion-label>
@@ -41,6 +41,10 @@
   <ion-item>
     <ion-label floating>Detalhamento da Ocorrencia</ion-label>
     <ion-input type="text" [(ngModel)]="ocorrencia.descricao"></ion-input>
+  </ion-item>
+  <ion-item *ngIf="editar">
+    <ion-label floating>Veículo Cadastrado?</ion-label>
+    <ion-input type="text" [ngModel]="veiculoCadastrado" disabled></ion-input>
   </ion-item>
   <ion-item>
     <button ion-button full (click)="salvarOcorrencia()" [hidden]="!editar">Salvar Ocorrencia</button>

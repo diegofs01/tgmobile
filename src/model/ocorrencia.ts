@@ -8,6 +8,7 @@ export class Ocorrencia {
         public data: Date,
         public hora: Date,
         public descricao: String,
-        public tipoOcorrencia: TipoOcorrencia
+        public tipoOcorrencia: TipoOcorrencia,
+        public veiculoCadastrado: Boolean
     ) {}
 }

@@ -8,6 +8,8 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 
+import { Ionic2MaskDirective } from 'ionic2-mask-directive';
+
 import { VeiculoServiceProvider } from '../providers/veiculo-service/veiculo-service';
 import { AlunoServiceProvider } from '../providers/aluno-service/aluno-service';
 import { OcorrenciaServiceProvider } from '../providers/ocorrencia-service/ocorrencia-service';
@@ -26,6 +28,8 @@ import { ConsultaOcorrenciaPage } from '../pages/consulta-ocorrencia/consulta-oc
   declarations: [
     MyApp,
     HomePage,
+
+    Ionic2MaskDirective,
 
     VeiculoConsultaPage,
 
