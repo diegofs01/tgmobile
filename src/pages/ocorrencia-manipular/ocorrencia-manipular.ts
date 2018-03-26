@@ -63,33 +63,36 @@ export class OcorrenciaManipularPage {
   }
 
   salvarOcorrencia() {
-    this.ocorrencia.tipoOcorrencia = this.tiposOcorrencias.find(to => to.id === this.tipoOcorrenciaID);
-    this.ocorrenciaService.salvarOcorrencia(this.ocorrencia)
-    .then(() => {
-      this.voltar();
-    });
+    if(this.validarCampos()) {
+      this.ocorrencia.tipoOcorrencia = this.tiposOcorrencias.find(to => to.id === this.tipoOcorrenciaID);
+      this.ocorrenciaService.salvarOcorrencia(this.ocorrencia)
+      .then(() => {
+        this.voltar();
+      });
+    }    
   }
 
   adicionarOcorrencia() {
-    this.ocorrencia.placaVeiculo = this.ocorrencia.placaVeiculo.toUpperCase();
+    if(this.validarCampos()) {
+      this.ocorrencia.placaVeiculo = this.ocorrencia.placaVeiculo.toUpperCase();
+      this.ocorrencia.tipoOcorrencia = this.tiposOcorrencias.find(to => to.id === this.tipoOcorrenciaID);
 
-    this.ocorrencia.tipoOcorrencia = this.tiposOcorrencias.find(to => to.id === this.tipoOcorrenciaID);
-
-    this.ocorrenciaService.verificarVeiculo(this.ocorrencia.placaVeiculo)
-    .then(data => {
-      if(data === 0) {
-        this.dialogs.confirm('Veículo não-cadastrado, deseja salva-lo mesmo assim?', 'Erro', ['Sim','Não'])
-        .then((teste) => {
-          if(teste === 1) {
-            console.log('Sim');
-            this.ocorrenciaService.adicionarOcorrencia(this.ocorrencia)
-            .then(() => {
-              this.voltar();
-            });
-          }
-        });
-      }
-    });
+      this.ocorrenciaService.verificarVeiculo(this.ocorrencia.placaVeiculo)
+      .then(data => {
+        if(data === 0) {
+          this.dialogs.confirm('Veículo não-cadastrado, deseja salva-lo mesmo assim?', 'Erro', ['Sim','Não'])
+          .then((teste) => {
+            if(teste === 1) {
+              console.log('Sim');
+              this.ocorrenciaService.adicionarOcorrencia(this.ocorrencia)
+              .then(() => {
+                this.voltar();
+              });
+            }
+          });
+        }
+      }); 
+    }
   }
 
   deletarOcorrencia() {
@@ -101,4 +104,25 @@ export class OcorrenciaManipularPage {
     this.navCtrl.pop();
   }
 
+  validarCampos() {
+    if(this.ocorrencia.placaVeiculo === '') {
+      return false;
+    }
+    if(this.ocorrencia.placaVeiculo.length !== 8) {
+      return false;
+    }
+    if(this.ocorrencia.data === null) {
+      return false;
+    }
+    if(this.ocorrencia.hora === null) {
+      return false;
+    }
+    if(this.tipoOcorrenciaID === 0) {
+      return false;
+    }
+    if(this.ocorrencia.descricao === '') {
+      return false;
+    }
+    return true;
+  }
 }
