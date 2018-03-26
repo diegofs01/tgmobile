@@ -80,4 +80,13 @@ export class OcorrenciaServiceProvider {
       });
     });
   }
+
+  verificarVeiculo(placa: String) {
+    return new Promise(resolve => {
+      this.http.get(apiUrl.urlOcorrencia + 'verificarVeiculo/' + placa)
+      .subscribe((result: any) => {
+        resolve(result.json());
+      });
+    });
+  }
 }

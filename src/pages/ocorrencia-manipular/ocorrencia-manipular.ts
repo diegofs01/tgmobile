@@ -1,7 +1,8 @@
 import { TipoOcorrenciaServiceProvider } from '../../providers/tipo-ocorrencia-service/tipo-ocorrencia-service';
-import { TipoOcorrencia } from '../../model/tipoOcorrencia';
-import { Component, TestabilityRegistry } from '@angular/core';
+import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+
+import { Dialogs } from '@ionic-native/dialogs';
 
 import { OcorrenciaServiceProvider } from '../../providers/ocorrencia-service/ocorrencia-service';
 import { Ocorrencia } from '../../model/ocorrencia';
@@ -32,7 +33,8 @@ export class OcorrenciaManipularPage {
     public navCtrl: NavController, 
     public navParams: NavParams, 
     public ocorrenciaService: OcorrenciaServiceProvider,
-    public tipoOcorrenciaService: TipoOcorrenciaServiceProvider) {
+    public tipoOcorrenciaService: TipoOcorrenciaServiceProvider,
+    private dialogs: Dialogs) {
 
     if(navParams.get('tipo') === 'editar') {
       this.ocorrencia = navParams.get('ocorrencia');
@@ -69,10 +71,24 @@ export class OcorrenciaManipularPage {
   }
 
   adicionarOcorrencia() {
+    this.ocorrencia.placaVeiculo = this.ocorrencia.placaVeiculo.toUpperCase();
+
     this.ocorrencia.tipoOcorrencia = this.tiposOcorrencias.find(to => to.id === this.tipoOcorrenciaID);
-    this.ocorrenciaService.adicionarOcorrencia(this.ocorrencia)
-    .then(() => {
-      this.voltar();
+
+    this.ocorrenciaService.verificarVeiculo(this.ocorrencia.placaVeiculo)
+    .then(data => {
+      if(data === 0) {
+        this.dialogs.confirm('Veículo não-cadastrado, deseja salva-lo mesmo assim?', 'Erro', ['Sim','Não'])
+        .then((teste) => {
+          if(teste === 1) {
+            console.log('Sim');
+            this.ocorrenciaService.adicionarOcorrencia(this.ocorrencia)
+            .then(() => {
+              this.voltar();
+            });
+          }
+        });
+      }
     });
   }
 

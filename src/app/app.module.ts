@@ -8,6 +8,8 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 
+import { Dialogs } from '@ionic-native/dialogs';
+
 import { Ionic2MaskDirective } from 'ionic2-mask-directive';
 
 import { VeiculoServiceProvider } from '../providers/veiculo-service/veiculo-service';
@@ -57,6 +59,7 @@ import { ConsultaOcorrenciaPage } from '../pages/consulta-ocorrencia/consulta-oc
   providers: [
     StatusBar,
     SplashScreen,
+    Dialogs,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     VeiculoServiceProvider,
     AlunoServiceProvider,
